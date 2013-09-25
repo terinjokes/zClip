@@ -1,0 +1,18 @@
+{
+  "name": "zclip",
+  "version": "1.1.2",
+  "description": "A lightweight jQuery \"copy to clipboard\" plugin",
+  "main": "zclip.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "zeroclipboard": "~1.1.7"
+  },
+  "devDependencies": {
+    "browserify": "~2.32.4",
+    "mangle-stream": "0.0.2"
+  }
+}
