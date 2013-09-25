@@ -22,14 +22,15 @@ var ZeroClipboard = global.ZeroClipboard = require('ZeroClipboard'),
 			};
 		}()),
 		clients = {},
-		clip;
+		clip,
+		$ = jQuery;
 
-jQuery.fn.zclip = function(options) {
+$.fn.zclip = function(options) {
 	var settings,
 			clientId;
 
-	if (jQuery.isPlainObject(options)) {
-		settings = jQuery.extend({}, defaults, options);
+	if ($.isPlainObject(options)) {
+		settings = $.extend({}, defaults, options);
 		clientId = unique();
 
 		clients[clientId] = settings;
@@ -47,30 +48,30 @@ jQuery.fn.zclip = function(options) {
 			});
 		}
 
-		if (jQuery.isFunction(settings.copy)) {
-			this.on('zClip_copy', jQuery.proxy(settings.copy, this));
+		if ($.isFunction(settings.copy)) {
+			this.on('zClip_copy', $.proxy(settings.copy, this));
 		}
 
-		if (jQuery.isFunction(settings.beforeCopy)) {
-			this.on('zClip_beforeCopy', jQuery.proxy(settings.beforeCopy, this));
+		if ($.isFunction(settings.beforeCopy)) {
+			this.on('zClip_beforeCopy', $.proxy(settings.beforeCopy, this));
 		}
 
-		if (jQuery.isFunction(settings.afterCopy)) {
-			this.on('zClip_afterCopy', jQuery.proxy(settings.afterCopy, this));
+		if ($.isFunction(settings.afterCopy)) {
+			this.on('zClip_afterCopy', $.proxy(settings.afterCopy, this));
 		}
 
 		clip.on('mouseover', function() {
-			var zclip = jQuery(this);
+			var zclip = $(this);
 			zclip.trigger('mouseenter');
 		});
 
 		clip.on('mouseout', function() {
-			var zclip = jQuery(this);
+			var zclip = $(this);
 			zclip.trigger('mouseleave');
 		});
 
 		clip.on('mousedown', function() {
-			var zclip = jQuery(this);
+			var zclip = $(this);
 			zclip.trigger('mousedown');
 		});
 
@@ -80,10 +81,10 @@ jQuery.fn.zclip = function(options) {
 
 		clip.on('complete', function(client, args) {
 			var text = args.text,
-					$el = jQuery(this),
+					$el = $(this),
 					settings = clients[$el.data('zclip-client')];
 
-			if (jQuery.isFunction(settings.afterCopy)) {
+			if ($.isFunction(settings.afterCopy)) {
 				$el.trigger('zClip_afterCopy', text);
 			} else {
 				if (text.length > 500) {
@@ -98,19 +99,19 @@ jQuery.fn.zclip = function(options) {
 		});
 
 		clip.on('dataRequested', function(client) {
-			var $el = jQuery(this),
+			var $el = $(this),
 					settings = clients[$el.data('zclip-client')];
 
 			$el.trigger('zClip_beforeCopy');
 
-			if (jQuery.isFunction(settings.copy)) {
+			if ($.isFunction(settings.copy)) {
 				client.setText(String($el.triggerHandler('zClip_copy')));
 			} else {
 				client.setText(settings.copy);
 			}
 		});
 
-		jQuery(global).on('load resize', function() {
+		$(global).on('load resize', function() {
 			clip.reposition();
 		});
 
