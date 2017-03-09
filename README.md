@@ -1,5 +1,7 @@
 # zClip
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/terinjokes/zClip.svg)](https://greenkeeper.io/)
+
 zClip is a lightweight jQuery "copy to clipboard" plugin built using the popular [ZeroClipboard][zeroclipboard] library. This plugin uses an invisible Adobe Flash movie that is fully compatible with Flash Player 10 and below.
 
 ## Fork
