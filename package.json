@@ -9,10 +9,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "zeroclipboard": "~1.1.7"
+    "zeroclipboard": "~2.3.0"
   },
   "devDependencies": {
-    "browserify": "~2.32.4",
+    "browserify": "~14.1.0",
     "mangle-stream": "0.0.2"
   }
 }
